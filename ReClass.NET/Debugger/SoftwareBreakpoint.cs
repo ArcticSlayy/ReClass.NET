@@ -1,6 +1,6 @@
-﻿using System;
-using ReClassNET.Memory;
+using System;
 using System.Diagnostics.Contracts;
+using ReClassNET.Memory;
 
 namespace ReClassNET.Debugger
 {

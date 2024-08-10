@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using NFluent;
 using ReClassNET.Util;
@@ -68,7 +68,7 @@ namespace ReClass.NET_Tests.Util
 		[InlineData("--p:123")]
 		public void TestParameterFormats(string arg)
 		{
-			var sut = new CommandLineArgs(new [] { arg });
+			var sut = new CommandLineArgs(new[] { arg });
 
 			Check.That(sut.Parameters).HasSize(1);
 			Check.That(sut.Parameters.First().Key).IsEqualTo("p");

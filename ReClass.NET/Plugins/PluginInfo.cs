@@ -11,8 +11,10 @@ namespace ReClassNET.Plugins
 {
 	internal class PluginInfo : IDisposable
 	{
-		public const string PluginName = "ReClass.NET Plugin";
-		public const string PluginNativeName = "ReClass.NET Native Plugin";
+		public const string PluginName =
+			Constants.AppDisplayName + " Plugin";
+		public const string PluginNativeName =
+			Constants.AppDisplayName + " Native Plugin";
 
 		public string FilePath { get; }
 

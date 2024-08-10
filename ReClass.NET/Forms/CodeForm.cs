@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.IO;
@@ -12,6 +12,7 @@ using ReClassNET.Extensions;
 using ReClassNET.Logger;
 using ReClassNET.Nodes;
 using ReClassNET.Project;
+using ReClassNET.StyleSheets;
 using ReClassNET.UI;
 using ReClassNET.Util.Rtf;
 
@@ -32,13 +33,14 @@ namespace ReClassNET.Forms
 			var code = generator.GenerateCode(classes, enums, logger);
 
 			var buffer = new StringBuilder(code.Length * 2);
+			var ss = new DarkStyleSheet();
 			using (var writer = new StringWriter(buffer))
 			{
 				new CodeColorizer().Colorize(
 					code,
 					generator.Language == Language.Cpp ? Languages.Cpp : Languages.CSharp,
 					new RtfFormatter(),
-					StyleSheets.Default,
+					ss,
 					writer
 				);
 			}
@@ -69,7 +71,9 @@ namespace ReClassNET.Forms
 		{
 			if (scopes.Any())
 			{
-				builder.SetForeColor(styleSheet.Styles[scopes.First().Name].Foreground).Append(parsedSourceCode);
+				builder
+					.SetForeColor(styleSheet.Styles[scopes.First().Name].Foreground)
+					.Append(parsedSourceCode);
 			}
 			else
 			{

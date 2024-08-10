@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using NFluent;
 using ReClassNET.Extensions;
 using Xunit;

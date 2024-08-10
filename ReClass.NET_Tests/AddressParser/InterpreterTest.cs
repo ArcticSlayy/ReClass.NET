@@ -1,4 +1,4 @@
-﻿using ReClassNET.AddressParser;
+using ReClassNET.AddressParser;
 
 namespace ReClass.NET_Tests.AddressParser
 {

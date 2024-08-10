@@ -3,7 +3,7 @@ namespace ReClassNET.AddressParser
 	public interface ITokenizer
 	{
 		/// <summary>
-		/// The current token. It is set to <see cref="Token.None"/> if no more tokens are avaiable.
+		/// The current token. It is set to <see cref="Token.None"/> if no more tokens are available.
 		/// </summary>
 		Token Token { get; }
 

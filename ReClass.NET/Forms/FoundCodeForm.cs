@@ -24,7 +24,7 @@ namespace ReClassNET.Forms
 		public delegate void StopEventHandler(object sender, EventArgs e);
 
 		private readonly RemoteProcess process;
-		
+
 		private readonly DataTable data;
 		private volatile bool acceptNewRecords = true;
 

@@ -1,4 +1,4 @@
-﻿namespace ReClassNET.Nodes
+namespace ReClassNET.Nodes
 {
 	public abstract class BaseClassWrapperNode : BaseWrapperNode
 	{

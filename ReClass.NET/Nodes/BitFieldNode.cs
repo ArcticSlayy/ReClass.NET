@@ -96,7 +96,7 @@ namespace ReClassNET.Nodes
 			Contract.Requires(memory != null);
 			Contract.Ensures(Contract.Result<string>() != null);
 
-			switch(bits)
+			switch (bits)
 			{
 				case 64:
 					return BitString.ToString(memory.ReadInt64(Offset));

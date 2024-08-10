@@ -1,5 +1,4 @@
 using System;
-using System.Text;
 using ReClassNET.Util.Conversion;
 
 namespace ReClassNET.Memory

@@ -1,4 +1,4 @@
-﻿namespace ReClassNET.Debugger
+namespace ReClassNET.Debugger
 {
 	public partial class RemoteDebugger
 	{

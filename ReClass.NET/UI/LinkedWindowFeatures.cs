@@ -82,7 +82,7 @@ namespace ReClassNET.UI
 			var sf = GlobalWindowManager.Windows.OfType<ScannerForm>().FirstOrDefault();
 			if (sf != null)
 			{
-				if (MessageBox.Show("Open a new scanner window?", Constants.ApplicationName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+				if (MessageBox.Show("Open a new scanner window?", Constants.AppDisplayName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
 				{
 					sf = null;
 				}
@@ -96,33 +96,33 @@ namespace ReClassNET.UI
 			var settings = ScanSettings.Default;
 			switch (comparer)
 			{
-				case ByteMemoryComparer _:
+				case ByteMemoryComparer:
 					settings.ValueType = ScanValueType.Byte;
 					break;
-				case ShortMemoryComparer _:
+				case ShortMemoryComparer:
 					settings.ValueType = ScanValueType.Short;
 					settings.FastScanAlignment = 2;
 					break;
-				case IntegerMemoryComparer _:
+				case IntegerMemoryComparer:
 					settings.ValueType = ScanValueType.Integer;
 					settings.FastScanAlignment = 4;
 					break;
-				case LongMemoryComparer _:
+				case LongMemoryComparer:
 					settings.ValueType = ScanValueType.Long;
 					settings.FastScanAlignment = 4;
 					break;
-				case FloatMemoryComparer _:
+				case FloatMemoryComparer:
 					settings.ValueType = ScanValueType.Float;
 					settings.FastScanAlignment = 4;
 					break;
-				case DoubleMemoryComparer _:
+				case DoubleMemoryComparer:
 					settings.ValueType = ScanValueType.Double;
 					settings.FastScanAlignment = 4;
 					break;
-				case ArrayOfBytesMemoryComparer _:
+				case ArrayOfBytesMemoryComparer:
 					settings.ValueType = ScanValueType.ArrayOfBytes;
 					break;
-				case StringMemoryComparer _:
+				case StringMemoryComparer:
 					settings.ValueType = ScanValueType.String;
 					break;
 			}

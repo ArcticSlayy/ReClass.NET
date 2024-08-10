@@ -1,4 +1,4 @@
-﻿using System.Text;
+using System.Text;
 using NFluent;
 using ReClassNET.Extensions;
 using Xunit;

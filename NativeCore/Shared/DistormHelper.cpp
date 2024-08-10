@@ -138,7 +138,11 @@ void FillInstructionData(const _CodeInfo& info, const RC_Pointer address, const 
 
 bool DisassembleInstructionsImpl(const RC_Pointer address, const RC_Size length, const RC_Pointer virtualAddress, const bool determineStaticInstructionBytes, EnumerateInstructionCallback callback)
 {
-	auto info = CreateCodeInfo(static_cast<const uint8_t*>(address), static_cast<int>(length), reinterpret_cast<_OffsetType>(virtualAddress));
+	auto info = CreateCodeInfo(
+		static_cast<const uint8_t*>(address),
+		static_cast<int>(length),
+		reinterpret_cast<_OffsetType>(virtualAddress)
+	);
 
 	const unsigned MaxInstructions = 50;
 
@@ -162,7 +166,7 @@ bool DisassembleInstructionsImpl(const RC_Pointer address, const RC_Size length,
 			InstructionData data = {};
 			FillInstructionData(info, instructionAddress, instruction, determineStaticInstructionBytes, &data);
 
-			if (callback(&data) == false)
+			if (!callback(&data))
 			{
 				return true;
 			}

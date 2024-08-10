@@ -211,9 +211,9 @@ namespace ReClassNET.Forms
 			{
 				CheckFileExists = true,
 				Filter = $"All Scanner Types |*{ReClassScanFile.FileExtension};*{CheatEngineFile.FileExtension};*{CrySearchFile.FileExtension}"
-				         + $"|{ReClassScanFile.FormatName} (*{ReClassScanFile.FileExtension})|*{ReClassScanFile.FileExtension}"
-				         + $"|{CheatEngineFile.FormatName} (*{CheatEngineFile.FileExtension})|*{CheatEngineFile.FileExtension}"
-				         + $"|{CrySearchFile.FormatName} (*{CrySearchFile.FileExtension})|*{CrySearchFile.FileExtension}"
+						 + $"|{ReClassScanFile.FormatName} (*{ReClassScanFile.FileExtension})|*{ReClassScanFile.FileExtension}"
+						 + $"|{CheatEngineFile.FormatName} (*{CheatEngineFile.FileExtension})|*{CheatEngineFile.FileExtension}"
+						 + $"|{CrySearchFile.FormatName} (*{CrySearchFile.FileExtension})|*{CrySearchFile.FileExtension}"
 			};
 
 			if (ofd.ShowDialog() == DialogResult.OK)
@@ -241,7 +241,7 @@ namespace ReClassNET.Forms
 
 				if (addressListMemoryRecordList.Records.Any())
 				{
-					if (MessageBox.Show("The address list contains addresses. Do you really want to open the file?", $"{Constants.ApplicationName} Scanner", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+					if (MessageBox.Show("The address list contains addresses. Do you really want to open the file?", $"{Constants.AppDisplayName} Scanner", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
 					{
 						return;
 					}

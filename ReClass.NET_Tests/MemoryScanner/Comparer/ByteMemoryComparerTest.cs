@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using NFluent;
 using ReClassNET.MemoryScanner;
 using ReClassNET.MemoryScanner.Comparer;

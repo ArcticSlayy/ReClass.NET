@@ -13,7 +13,7 @@ namespace ReClassNET.Forms
 	{
 		private const string NoPreviousProcess = "No previous process";
 
-		private static readonly string[] commonProcesses = 
+		private static readonly string[] commonProcesses =
 		{
 			"[system process]", "system", "svchost.exe", "services.exe", "wininit.exe",
 			"smss.exe", "csrss.exe", "lsass.exe", "winlogon.exe", "wininit.exe", "dwm.exe"
@@ -105,7 +105,7 @@ namespace ReClassNET.Forms
 			dt.Columns.Add("id", typeof(IntPtr));
 			dt.Columns.Add("path", typeof(string));
 			dt.Columns.Add("info", typeof(ProcessInfo));
-
+			
 			var shouldFilter = filterCheckBox.Checked;
 
 			foreach (var p in Program.CoreFunctions.EnumerateProcesses().Where(p => !shouldFilter || !commonProcesses.Contains(p.Name.ToLower())))

@@ -85,7 +85,33 @@ namespace ReClassNET.Nodes
 				x = AddIcon(context, x, y, context.IconProvider.Change, 1, HotSpotType.ChangeClassType);
 				size.Width = Math.Max(size.Width, x - origX);
 				size.Height += context.Font.Height;
+				/*
+				foreach (var token in new AssemblyTokenizer().Read(line.Item3))
+				{
+					var color = Color.Black;
+					if (token.TokenType == TokenType.Keyword)
+					{
+						if (AssemblyTokenizer.IsKeyword(token.Value))
+						{
+							color = Color.Navy;
+						}
+						else if (AssemblyTokenizer.IsRegister(token.Value))
+						{
+							color = Color.Green;
+						}
+					}
+					else if (token.TokenType == Token.Bracket)
+					{
+						color = Color.Purple;
+					}
+					else if (token.TokenType == Token.Operation)
+					{
+						color = Color.Red;
+					}
 
+					x = AddText(view, x, y, color, HotSpot.NoneId, token.Value) + 5;
+				}
+				*/
 				var instructionSize = DrawInstructions(context, tx, y + 4);
 				size.Width = Math.Max(size.Width, instructionSize.Width + tx - origX);
 				size.Height += instructionSize.Height + 4;

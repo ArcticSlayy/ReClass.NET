@@ -158,8 +158,8 @@ namespace ReClassNET.Forms
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(409, 39);
 			this.label1.TabIndex = 0;
-			this.label1.Text = "Plugins can provide different methods how ReClass.NET accesses a remote process.\r" +
-    "\n\r\nWarning: You should detach from the current process before changing a functio" +
+			this.label1.Text = "Plugins can provide different methods how " + Constants.AppDisplayName + " accesses a remote process.\r" +
+    "\n\r\nWarning: You should detach from the current process before changing a function" +
     "n.";
 			// 
 			// getMoreLinkLabel
@@ -193,7 +193,7 @@ namespace ReClassNET.Forms
 			this.bannerBox.Name = "bannerBox";
 			this.bannerBox.Size = new System.Drawing.Size(740, 48);
 			this.bannerBox.TabIndex = 3;
-			this.bannerBox.Text = "Here you can configure all loaded ReClass.NET plugins.";
+			this.bannerBox.Text = "Here you can configure all loaded " + Constants.AppDisplayName + "plugins.";
 			this.bannerBox.Title = "Plugins";
 			// 
 			// iconColumn
@@ -250,7 +250,7 @@ namespace ReClassNET.Forms
 			this.Name = "PluginForm";
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "ReClass.NET - Plugins";
+			this.Text = Constants.AppDisplayName + "- Plugins";
 			this.tabControl.ResumeLayout(false);
 			this.pluginsTabPage.ResumeLayout(false);
 			this.descriptionGroupBox.ResumeLayout(false);

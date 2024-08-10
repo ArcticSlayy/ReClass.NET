@@ -64,7 +64,7 @@ namespace ReClassNET.Util
 				localApplicationData = applicationData;
 			}
 
-			return Path.Combine(localApplicationData, Constants.ApplicationName);
+			return Path.Combine(localApplicationData, Constants.AppName);
 		});
 
 		/// <summary>Gets the full pathname of the settings folder.</summary>

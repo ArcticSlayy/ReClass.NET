@@ -143,8 +143,8 @@ namespace ReClassNET.Memory
 			{
 				// Check if it is a vtable. Check if the first 3 values are pointers to a code section.
 				if (process.GetSectionToPointer(process.ReadRemoteIntPtr(address))?.Category == SectionCategory.CODE
-				    && process.GetSectionToPointer(process.ReadRemoteIntPtr(address + IntPtr.Size))?.Category == SectionCategory.CODE
-				    && process.GetSectionToPointer(process.ReadRemoteIntPtr(address + 2 * IntPtr.Size))?.Category == SectionCategory.CODE)
+					&& process.GetSectionToPointer(process.ReadRemoteIntPtr(address + IntPtr.Size))?.Category == SectionCategory.CODE
+					&& process.GetSectionToPointer(process.ReadRemoteIntPtr(address + 2 * IntPtr.Size))?.Category == SectionCategory.CODE)
 				{
 					node = new VirtualMethodTableNode();
 

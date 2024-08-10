@@ -121,7 +121,7 @@ namespace ReClassNET.Forms
 			this.Controls.Add(this.bannerBox);
 			this.MinimumSize = new System.Drawing.Size(445, 317);
 			this.Name = "NamedAddressesForm";
-			this.Text = "ReClass.NET - Named Addresses";
+			this.Text = Constants.AppDisplayName + "- Named Addresses";
 			((System.ComponentModel.ISupportInitialize)(this.bannerBox)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();

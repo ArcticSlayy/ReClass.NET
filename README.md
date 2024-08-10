@@ -1,9 +1,11 @@
 # ReClass.NET
+
 This is a port of ReClass to the .NET platform with lots of additional features.
 
-![](https://abload.de/img/main4hsbj.jpg)
+![Notepad++ open in ReClass.NET (old, Windows 7)](assets/imgs/notepad++-demo.jpg)
 
 ## Features
+
 - Support for x86 / x64
 - File import from ReClass 2007-2016 and ReClass QT
 - Memory Nodes
@@ -12,7 +14,7 @@ This is a port of ReClass to the .NET platform with lots of additional features.
   - Int 8 / 16 / 32 / 64
   - UInt 8 / 16 / 32 / 64
   - Bool
-  - Bits ![](https://abload.de/img/bitsnhlql.jpg)
+  - Bits ![demo](assets/imgs/bits.jpg)
   - Enumerations
   - Float / Double
   - Vector 2 / 3 / 4
@@ -26,7 +28,7 @@ This is a port of ReClass to the .NET platform with lots of additional features.
 - Highlight changed memory
 - Pointer Preview
 - Copy / Paste Support across ReClass.NET instances
-- Display types from Debug Symbols (*.pdb)
+- Display types from Debug Symbols (\*.pdb)
 - Display Runtime Type Informations (RTTI)
 - Control the remote process: start / stop / kill
 - Process Selection Dialog with filtering
@@ -47,6 +49,7 @@ This is a port of ReClass to the .NET platform with lots of additional features.
   - Plugins can implement custom nodes with load/save and code generation support
 
 ## Plugins
+
 - [Sample Plugins](https://github.com/ReClassNET/ReClass.NET-SamplePlugin)
 - [Frostbite Plugin](https://github.com/ReClassNET/ReClass.NET-FrostbitePlugin)
 - [MemoryPipe Plugin](https://github.com/ReClassNET/ReClass.NET-MemoryPipePlugin)
@@ -59,29 +62,34 @@ To install a plugin just copy it in the "Plugins" folder.
 If you want to develop your own plugin just learn from the code of the [Sample Plugins](https://github.com/ReClassNET/ReClass.NET-SamplePlugin) and [Frostbite Plugin](https://github.com/ReClassNET/ReClass.NET-FrostbitePlugin) repositories. If you have developed a nice plugin, leave me a message and I will add it to the list above.
 
 ## Installation
+
 Just download the [latest version](https://github.com/ReClassNET/ReClass.NET/releases) and start the x86 / x64 version or let the launcher decide.
 
 ## Tips
+
 - Lots of elements have a context menu. Just right-click it and see what you can do there.
 - The node window can be controlled with the keyboard too. Arrow keys can select other keys, combined with the shift key the nodes get selected. The menu key opens the context menu which itself can be controlled with the keyboard.
-- The memory address field of a class can contain a real formula not just a fixed address.  
-  
-  **\<Program.exe> + 0x123** will use the base address of Program.exe and add 0x123 to it.  
-  **[0x4012ABDE]** will read the integer (4 byte on x86 / 8 byte on x64) from the address 0x4012ABDE and use this value as class address.  
-  **[\<Program.exe> + 0xDE] - AB** will use the base address of Program.exe, add 0xDE to it, read the value from this address and finally sub 0xAB from it.  
-  **[\<Program.exe> + offset + [\<Program.exe> + offset2]]** Nested operations are supported too.  
-  
-  Valid operations are read ([..]), add (+), sub (-), mul (*) and div (/). Please note that all operations are integer calculations.
+- The memory address field of a class can contain a real formula not just a fixed address.
+
+    **\<Program.exe> + 0x123** will use the base address of Program.exe and add 0x123 to it.
+    **[0x4012ABDE]** will read the integer (4 byte on x86 / 8 byte on x64) from the address 0x4012ABDE and use this value as class address.
+    **[\<Program.exe> + 0xDE] - AB** will use the base address of Program.exe, add 0xDE to it, read the value from this address and finally sub 0xAB from it.
+    **[\<Program.exe> + offset + [\<Program.exe> + offset2]]** Nested operations are supported too.
+
+    Valid operations are read ([..]), add (+), sub (-), mul (\*) and div (/). Please note that all operations are integer calculations.
 
 ## Compiling
+
 If you want to compile ReClass.NET just fork the repository and open the ReClass.NET.sln file with Visual Studio 2019.
 Compile the project and copy the dependencies to the output folder.
 
 To compile the linux native core library, you need WSL [installed and configured](https://learn.microsoft.com/en-us/cpp/build/walkthrough-build-debug-wsl2). If you do not need linux support, simply unload the project in the Solution Explorer. If you want to build cross-platform (x86/x64) you have to install `g++-multilib` too.
 
-If you use the `Makefile` with `docker` or `podman` you have to build the needed image `gcc_multilib` from the following `Dockerfile` (`docker build -t gcc_multi .`):
+If you use the `Makefile` with `docker` or `podman`,
+you have to build the needed image `gcc_multilib` from
+the following `Dockerfile` (`docker build -t gcc_multi .`):
 
-```
+```dockerfile
 FROM ubuntu:latest
 
 RUN apt-get update \
@@ -97,30 +105,32 @@ RUN apt-get update \
 [Youtube Playlist](https://www.youtube.com/playlist?list=PLO246BmtoITanq3ygMCL8_w0eov4D8hjk)
 
 ## Screenshots
-Process Selection  
-![](https://abload.de/img/processgya2k.jpg)
 
-Memory Viewer  
-![](https://abload.de/img/memoryviewerb4y1s.jpg)
+Process Selection
+![](assets/imgs/process-selector.jpg)
 
-Memory Scanner  
-![](https://abload.de/img/scannerytub1.jpg)
+Memory Viewer
+![](assets/imgs/memory-viewer.jpg)
 
-Pointer Preview  
-![](https://abload.de/img/memorypreview2gsfp.jpg)
+Memory Scanner
+![](assets/imgs/memory-scanner.jpg)
 
-Code Generator  
-![](https://abload.de/img/codegeneratorqdat2.jpg)
-![](https://abload.de/img/codegenerator24qzce.jpg)
+Pointer Preview
+![](assets/imgs/pointer-preview.jpg)
 
-Plugins  
-![](https://abload.de/img/plugin1mda4r.jpg)
-![](https://abload.de/img/plugin25dxk1.jpg)
+Code Generator
+![](assets/imgs/codegen-cpp.jpg)
+![](assets/imgs/codegen-cpp-2.jpg)
 
-Settings  
-![](https://abload.de/img/settings8sz4b.jpg)
+Plugins
+![](assets/imgs/plugins-sample-plugin-native.jpg)
+![](assets/imgs/plugins-native-helper-tab.jpg)
+
+Settings
+![](assets/imgs/settings.jpg)
 
 ## Authors / Special Thanks
+
 - [KN4CK3R](https://github.com/KN4CK3R)
 - DrUnKeN ChEeTaH
 - P47R!CK

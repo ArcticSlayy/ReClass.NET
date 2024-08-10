@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Threading;
@@ -121,7 +121,7 @@ namespace ReClassNET.Forms
 			{
 				if (hotkeyListBox.Items.Count == 0)
 				{
-					MessageBox.Show("Please add at least one hotkey.", Constants.ApplicationName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+					MessageBox.Show("Please add at least one hotkey.", Constants.AppDisplayName, MessageBoxButtons.OK, MessageBoxIcon.Error);
 
 					return;
 				}

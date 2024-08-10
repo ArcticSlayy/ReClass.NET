@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using ReClassNET.Debugger;
 
 namespace ReClassNET.Core

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
@@ -97,6 +97,17 @@ namespace ReClassNET.Memory
 			var buffer = process.ReadRemoteMemory(address, maxLength);
 
 			return DisassembleFunction(buffer, address);
+		}
+
+		public int parameterCount(IRemoteMemoryReader process, IntPtr address)
+		{
+			var instructions = RemoteDisassembleFunction(process, address, 0);
+			var count = 0;
+			instructions.ForEach(instruction =>
+			{
+				throw new NotImplementedException("TODO!");
+			});
+			return count;
 		}
 
 		/// <summary>Disassembles the code in the given data.</summary>

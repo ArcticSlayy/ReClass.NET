@@ -26,7 +26,7 @@ namespace ReClassNET.Memory
 				{
 					data = new byte[value];
 					historyData = new byte[value];
-					
+
 					hasHistory = false;
 
 					ContainsValidData = false;

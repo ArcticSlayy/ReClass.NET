@@ -28,37 +28,40 @@ namespace ReClassNET.Controls
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.valueTextBox = new System.Windows.Forms.TextBox();
-			this.colorPanel = new System.Windows.Forms.Panel();
-			this.SuspendLayout();
-			// 
-			// valueTextBox
-			// 
-			this.valueTextBox.Location = new System.Drawing.Point(37, 0);
-			this.valueTextBox.Name = "valueTextBox";
-			this.valueTextBox.Size = new System.Drawing.Size(86, 20);
-			this.valueTextBox.TabIndex = 0;
-			this.valueTextBox.TextChanged += new System.EventHandler(this.OnTextChanged);
-			// 
-			// colorPanel
-			// 
-			this.colorPanel.Location = new System.Drawing.Point(0, 0);
-			this.colorPanel.Name = "colorPanel";
-			this.colorPanel.Size = new System.Drawing.Size(30, 20);
-			this.colorPanel.TabIndex = 1;
-			this.colorPanel.Click += new System.EventHandler(this.OnPanelClick);
-			this.colorPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.OnPanelPaint);
-			// 
-			// ColorBox
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.colorPanel);
-			this.Controls.Add(this.valueTextBox);
-			this.Name = "ColorBox";
-			this.Size = new System.Drawing.Size(123, 20);
-			this.ResumeLayout(false);
-			this.PerformLayout();
+            this.valueTextBox = new System.Windows.Forms.TextBox();
+            this.colorPanel = new System.Windows.Forms.Panel();
+            this.SuspendLayout();
+            // 
+            // valueTextBox
+            // 
+            this.valueTextBox.BackColor = System.Drawing.Color.Black;
+            this.valueTextBox.ForeColor = System.Drawing.Color.White;
+            this.valueTextBox.Location = new System.Drawing.Point(37, 0);
+            this.valueTextBox.Name = "valueTextBox";
+            this.valueTextBox.Size = new System.Drawing.Size(86, 20);
+            this.valueTextBox.TabIndex = 0;
+            this.valueTextBox.TextChanged += new System.EventHandler(this.OnTextChanged);
+            // 
+            // colorPanel
+            // 
+            this.colorPanel.Location = new System.Drawing.Point(0, 0);
+            this.colorPanel.Name = "colorPanel";
+            this.colorPanel.Size = new System.Drawing.Size(30, 20);
+            this.colorPanel.TabIndex = 1;
+            this.colorPanel.Click += new System.EventHandler(this.OnPanelClick);
+            this.colorPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.OnPanelPaint);
+            // 
+            // ColorBox
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.colorPanel);
+            this.Controls.Add(this.valueTextBox);
+            this.Name = "ColorBox";
+            this.Size = new System.Drawing.Size(123, 20);
+            this.ResumeLayout(false);
+            this.PerformLayout();
 
 		}
 

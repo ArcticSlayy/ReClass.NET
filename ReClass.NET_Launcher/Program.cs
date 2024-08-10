@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
@@ -19,7 +19,7 @@ namespace ReClassNET_Launcher
 			// Register the files with the launcher.
 			if (commandLineArgs[Constants.CommandLineOptions.FileExtRegister] != null)
 			{
-				NativeMethods.RegisterExtension(ReClassNetFile.FileExtension, ReClassNetFile.FileExtensionId, PathUtil.ExecutablePath, Constants.ApplicationName);
+				NativeMethods.RegisterExtension(ReClassNetFile.FileExtension, ReClassNetFile.FileExtensionId, PathUtil.ExecutablePath, Constants.AppName);
 
 				return;
 			}
@@ -41,12 +41,12 @@ namespace ReClassNET_Launcher
 				}
 				catch (Exception)
 				{
-					
+
 				}
 			}
 
 			// And finally start the real ReClass.NET.
-			var applicationPath = Path.Combine(PathUtil.ExecutableFolderPath, is64Bit ? "x64" : "x86", Constants.ApplicationExecutableName);
+			var applicationPath = Path.Combine(PathUtil.ExecutableFolderPath, is64Bit ? "x64" : "x86", Constants.AppExecutableName);
 
 			try
 			{
@@ -66,7 +66,7 @@ namespace ReClassNET_Launcher
 			}
 			catch (Exception)
 			{
-				MessageBox.Show($"Could not start '{applicationPath}'.", Constants.ApplicationName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show($"Could not start '{applicationPath}'.", Constants.AppName, MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
 

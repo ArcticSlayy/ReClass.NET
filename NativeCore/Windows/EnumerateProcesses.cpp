@@ -33,7 +33,6 @@ Platform GetProcessPlatform(HANDLE process)
 			{
 				return isWow64 ? Platform::X86 : Platform::X64;
 			}
-
 #ifdef RECLASSNET64
 			return Platform::X64;
 #else

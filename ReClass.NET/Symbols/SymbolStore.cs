@@ -169,8 +169,8 @@ namespace ReClassNET.Symbols
 			if (createNew)
 			{
 				var reader = SymbolReader.FromModule(module, SymbolSearchPath);
-				
-				lock(symbolReaders)
+
+				lock (symbolReaders)
 				{
 					symbolReaders[moduleName] = reader;
 				}

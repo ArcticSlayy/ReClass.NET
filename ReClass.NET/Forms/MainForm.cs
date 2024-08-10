@@ -35,9 +35,9 @@ namespace ReClassNET.Forms
 
 		private ClassNode currentClassNode;
 
-		private readonly MemoryBuffer memoryViewBuffer = new MemoryBuffer();
+		private readonly MemoryBuffer memoryViewBuffer = new();
 
-		private Task updateProcessInformationsTask;
+		private Task updateProcessInfoTask;
 		private Task loadSymbolsTask;
 		private CancellationTokenSource loadSymbolsTaskToken;
 
@@ -61,7 +61,13 @@ namespace ReClassNET.Forms
 
 		private void UpdateWindowTitle(string extra = null)
 		{
-			var title = $"{(Program.Settings.RandomizeWindowTitle ? Utils.RandomString(Program.GlobalRandom.Next(15, 20)) : Constants.ApplicationName)} ({Constants.Platform})";
+			var title = $"{
+				(
+					Program.Settings.RandomizeWindowTitle
+						? Utils.RandomString(Program.GlobalRandom.Next(15, 20))
+						: Constants.AppDisplayName
+				)
+				} ({Constants.Platform})";
 			if (!string.IsNullOrEmpty(extra))
 			{
 				title += $" - {extra}";
@@ -123,7 +129,7 @@ namespace ReClassNET.Forms
 					Program.Logger.Log(ex);
 				}
 			}
-			
+
 			if (createDefaultProject)
 			{
 				SetProject(new ReClassNetProject());
@@ -152,7 +158,7 @@ namespace ReClassNET.Forms
 			processUpdateTimer.Stop();
 
 			// and cancel all running tasks.
-			if (loadSymbolsTask != null || updateProcessInformationsTask != null)
+			if (loadSymbolsTask != null || updateProcessInfoTask != null)
 			{
 				e.Cancel = true;
 
@@ -174,18 +180,18 @@ namespace ReClassNET.Forms
 					loadSymbolsTask = null;
 				}
 
-				if (updateProcessInformationsTask != null)
+				if (updateProcessInfoTask != null)
 				{
 					try
 					{
-						await updateProcessInformationsTask;
+						await updateProcessInfoTask;
 					}
 					catch
 					{
 						// ignored
 					}
 
-					updateProcessInformationsTask = null;
+					updateProcessInfoTask = null;
 				}
 
 				Close();
@@ -409,12 +415,12 @@ namespace ReClassNET.Forms
 			currentProject.RemoveUnusedClasses();
 		}
 
-		private void generateCppCodeToolStripMenuItem_Click(object sender, EventArgs e)
+		private void GenerateCode_Cpp(object sender, EventArgs e)
 		{
 			ShowCodeGeneratorForm(new CppCodeGenerator(currentProject.TypeMapping));
 		}
 
-		private void generateCSharpCodeToolStripMenuItem_Click(object sender, EventArgs e)
+		private void GenerateCode_CSharp(object sender, EventArgs e)
 		{
 			ShowCodeGeneratorForm(new CSharpCodeGenerator());
 		}
@@ -476,22 +482,22 @@ namespace ReClassNET.Forms
 			var nodeIsContainer = node is BaseContainerNode;
 			var nodeIsSearchableValueNode = node switch
 			{
-				BaseHexNode _ => true,
-				FloatNode _ => true,
-				DoubleNode _ => true,
-				Int8Node _ => true,
-				UInt8Node _ => true,
-				Int16Node _ => true,
-				UInt16Node _ => true,
-				Int32Node _ => true,
-				UInt32Node _ => true,
-				Int64Node _ => true,
-				UInt64Node _ => true,
-				NIntNode _ => true,
-				NUIntNode _ => true,
-				Utf8TextNode _ => true,
-				Utf16TextNode _ => true,
-				Utf32TextNode _ => true,
+				BaseHexNode => true,
+				FloatNode => true,
+				DoubleNode => true,
+				Int8Node => true,
+				UInt8Node => true,
+				Int16Node => true,
+				UInt16Node => true,
+				Int32Node => true,
+				UInt32Node => true,
+				Int64Node => true,
+				UInt64Node => true,
+				NIntNode => true,
+				NUIntNode => true,
+				Utf8TextNode => true,
+				Utf16TextNode => true,
+				Utf32TextNode => true,
 				_ => false
 			};
 
@@ -635,25 +641,25 @@ namespace ReClassNET.Forms
 					comparer = new LongMemoryComparer(ScanCompareType.Equal, (long)node.ReadValueFromMemory(selectedNode.Memory), 0L, bitConverter);
 					break;
 				case NIntNode node:
-				{
-					var value = node.ReadValueFromMemory(selectedNode.Memory);
+					{
+						var value = node.ReadValueFromMemory(selectedNode.Memory);
 #if RECLASSNET64
-					comparer = new LongMemoryComparer(ScanCompareType.Equal, value.ToInt64(), 0L, bitConverter);
+						comparer = new LongMemoryComparer(ScanCompareType.Equal, value.ToInt64(), 0L, bitConverter);
 #else
-					comparer = new IntegerMemoryComparer(ScanCompareType.Equal, value.ToInt32(), 0, bitConverter);
+						comparer = new IntegerMemoryComparer(ScanCompareType.Equal, value.ToInt32(), 0, bitConverter);
 #endif
-					break;
-				}
+						break;
+					}
 				case NUIntNode node:
-				{
-					var value = node.ReadValueFromMemory(selectedNode.Memory);
+					{
+						var value = node.ReadValueFromMemory(selectedNode.Memory);
 #if RECLASSNET64
-					comparer = new LongMemoryComparer(ScanCompareType.Equal, (long)value.ToUInt64(), 0L, bitConverter);
+						comparer = new LongMemoryComparer(ScanCompareType.Equal, (long)value.ToUInt64(), 0L, bitConverter);
 #else
-					comparer = new IntegerMemoryComparer(ScanCompareType.Equal, (int)value.ToUInt32(), 0, bitConverter);
+						comparer = new IntegerMemoryComparer(ScanCompareType.Equal, (int)value.ToUInt32(), 0, bitConverter);
 #endif
-					break;
-				}
+						break;
+					}
 				case Utf8TextNode node:
 					comparer = new StringMemoryComparer(node.ReadValueFromMemory(selectedNode.Memory), Encoding.UTF8, true);
 					break;
@@ -746,7 +752,7 @@ namespace ReClassNET.Forms
 			}
 		}
 
-#endregion
+		#endregion
 
 		private void MainForm_DragEnter(object sender, DragEventArgs e)
 		{
@@ -785,12 +791,12 @@ namespace ReClassNET.Forms
 
 		private void processUpdateTimer_Tick(object sender, EventArgs e)
 		{
-			if (updateProcessInformationsTask != null && !updateProcessInformationsTask.IsCompleted)
+			if (updateProcessInfoTask != null && !updateProcessInfoTask.IsCompleted)
 			{
 				return;
 			}
 
-			updateProcessInformationsTask = Program.RemoteProcess.UpdateProcessInformationsAsync();
+			updateProcessInfoTask = Program.RemoteProcess.UpdateProcessInformationsAsync();
 		}
 
 		private void classesView_ClassSelected(object sender, ClassNode node)
@@ -942,7 +948,7 @@ namespace ReClassNET.Forms
 				return;
 			}
 
-			ShowPartialCodeGeneratorForm(new[] { classNode });
+			ShowPartialCodeGeneratorForm([classNode]);
 		}
 
 		private void enableHierarchyViewToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1051,5 +1057,11 @@ namespace ReClassNET.Forms
 				args.BaseAddress = address;
 			}
 		}
+		/*
+#region Dark mode
+[DllImport("dwmapi.dll")]
+static extern void DwmSetWindowAttribute(IntPtr hwnd, int attribute, int attributeSize);
+#endregion
+*/
 	}
 }

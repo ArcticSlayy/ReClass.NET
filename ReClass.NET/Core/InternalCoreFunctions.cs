@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -101,7 +101,7 @@ namespace ReClassNET.Core
 			var keys = new int[length];
 			Marshal.Copy(buffer, keys, 0, length);
 			return (Keys[])(object)keys; // Yes, it's legal...
-			//return Array.ConvertAll(keys, k => (Keys)k);
+										 //return Array.ConvertAll(keys, k => (Keys)k);
 		}
 
 		public void ReleaseInput(IntPtr handle)

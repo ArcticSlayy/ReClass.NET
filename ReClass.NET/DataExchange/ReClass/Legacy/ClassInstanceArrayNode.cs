@@ -1,4 +1,4 @@
-﻿using ReClassNET.Nodes;
+using ReClassNET.Nodes;
 
 namespace ReClassNET.DataExchange.ReClass.Legacy
 {

@@ -1,7 +1,7 @@
-﻿using System.Diagnostics.Contracts;
+using System;
+using System.Diagnostics.Contracts;
 using System.Windows.Forms;
 using ReClassNET.Forms;
-using System;
 
 namespace ReClassNET.Logger
 {

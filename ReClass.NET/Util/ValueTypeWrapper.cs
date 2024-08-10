@@ -1,4 +1,4 @@
-﻿namespace ReClassNET.Util
+namespace ReClassNET.Util
 {
 	/// <summary>A wrapper for non reference types.</summary>
 	/// <typeparam name="T">Generic type parameter.</typeparam>

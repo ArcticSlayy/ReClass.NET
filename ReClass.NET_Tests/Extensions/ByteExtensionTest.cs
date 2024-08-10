@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using NFluent;
 using ReClassNET.Extensions;
 using Xunit;

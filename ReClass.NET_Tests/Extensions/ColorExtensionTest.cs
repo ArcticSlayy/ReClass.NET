@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+using System.Drawing;
 using NFluent;
 using ReClassNET.Extensions;
 using Xunit;

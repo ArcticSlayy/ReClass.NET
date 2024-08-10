@@ -92,7 +92,7 @@ namespace ReClassNET.CodeGenerator
 
 		#endregion
 
-		private readonly Dictionary<Type, string> nodeTypeToTypeDefinationMap;
+		private readonly Dictionary<Type, string> nodeTypeToTypeDefinitionMap;
 
 		#region HelperNodes
 
@@ -126,7 +126,7 @@ namespace ReClassNET.CodeGenerator
 
 		public CppCodeGenerator(CppTypeMapping typeMapping)
 		{
-			nodeTypeToTypeDefinationMap = new Dictionary<Type, string>
+			nodeTypeToTypeDefinitionMap = new Dictionary<Type, string>
 			{
 				[typeof(BoolNode)] = typeMapping.TypeBool,
 				[typeof(DoubleNode)] = typeMapping.TypeDouble,
@@ -159,7 +159,7 @@ namespace ReClassNET.CodeGenerator
 			using var sw = new StringWriter();
 			using var iw = new IndentedTextWriter(sw, "\t");
 
-			iw.WriteLine($"// Created with {Constants.ApplicationName} {Constants.ApplicationVersion} by {Constants.Author}");
+			iw.WriteLine($"// Created with {Constants.AppDisplayName} {Constants.AppVersion} by {Constants.Author}");
 			iw.WriteLine();
 
 			using (var en = enums.GetEnumerator())
@@ -242,16 +242,16 @@ namespace ReClassNET.CodeGenerator
 			switch (@enum.Size)
 			{
 				case EnumDescription.UnderlyingTypeSize.OneByte:
-					writer.WriteLine(nodeTypeToTypeDefinationMap[typeof(Int8Node)]);
+					writer.WriteLine(nodeTypeToTypeDefinitionMap[typeof(Int8Node)]);
 					break;
 				case EnumDescription.UnderlyingTypeSize.TwoBytes:
-					writer.WriteLine(nodeTypeToTypeDefinationMap[typeof(Int16Node)]);
+					writer.WriteLine(nodeTypeToTypeDefinitionMap[typeof(Int16Node)]);
 					break;
 				case EnumDescription.UnderlyingTypeSize.FourBytes:
-					writer.WriteLine(nodeTypeToTypeDefinationMap[typeof(Int32Node)]);
+					writer.WriteLine(nodeTypeToTypeDefinitionMap[typeof(Int32Node)]);
 					break;
 				case EnumDescription.UnderlyingTypeSize.EightBytes:
-					writer.WriteLine(nodeTypeToTypeDefinationMap[typeof(Int64Node)]);
+					writer.WriteLine(nodeTypeToTypeDefinitionMap[typeof(Int64Node)]);
 					break;
 			}
 			writer.WriteLine("{");
@@ -305,7 +305,7 @@ namespace ReClassNET.CodeGenerator
 			}
 
 			writer.WriteLine();
-			
+
 			writer.WriteLine("{");
 			writer.WriteLine("public:");
 			writer.Indent++;
@@ -514,32 +514,32 @@ namespace ReClassNET.CodeGenerator
 			switch (node)
 			{
 				case BaseTextNode textNode:
-				{
-					var arrayNode = new ArrayNode { Count = textNode.Length };
-					arrayNode.CopyFromNode(node);
-					arrayNode.ChangeInnerNode(GetCharacterNodeForEncoding(textNode.Encoding));
-					return arrayNode;
-				}
+					{
+						var arrayNode = new ArrayNode { Count = textNode.Length };
+						arrayNode.CopyFromNode(node);
+						arrayNode.ChangeInnerNode(GetCharacterNodeForEncoding(textNode.Encoding));
+						return arrayNode;
+					}
 				case BaseTextPtrNode textPtrNode:
-				{
-					var pointerNode = new PointerNode();
-					pointerNode.CopyFromNode(node);
-					pointerNode.ChangeInnerNode(GetCharacterNodeForEncoding(textPtrNode.Encoding));
-					return pointerNode;
-				}
+					{
+						var pointerNode = new PointerNode();
+						pointerNode.CopyFromNode(node);
+						pointerNode.ChangeInnerNode(GetCharacterNodeForEncoding(textPtrNode.Encoding));
+						return pointerNode;
+					}
 				case BitFieldNode bitFieldNode:
-				{
-					var underlayingNode = bitFieldNode.GetUnderlayingNode();
-					underlayingNode.CopyFromNode(node);
-					return underlayingNode;
-				}
+					{
+						var underlayingNode = bitFieldNode.GetUnderlayingNode();
+						underlayingNode.CopyFromNode(node);
+						return underlayingNode;
+					}
 				case BaseHexNode hexNode:
-				{
-					var arrayNode = new ArrayNode { Count = hexNode.MemorySize };
-					arrayNode.CopyFromNode(node);
-					arrayNode.ChangeInnerNode(new Utf8CharacterNode());
-					return arrayNode;
-				}
+					{
+						var arrayNode = new ArrayNode { Count = hexNode.MemorySize };
+						arrayNode.CopyFromNode(node);
+						arrayNode.ChangeInnerNode(new Utf8CharacterNode());
+						return arrayNode;
+					}
 			}
 
 			return node;
@@ -561,20 +561,17 @@ namespace ReClassNET.CodeGenerator
 				return custom.GetTypeDefinition(node, GetTypeDefinition, ResolveWrappedType, logger);
 			}
 
-			if (nodeTypeToTypeDefinationMap.TryGetValue(node.GetType(), out var type))
+			if (nodeTypeToTypeDefinitionMap.TryGetValue(node.GetType(), out var type))
 			{
 				return type;
 			}
 
-			switch (node)
+			return node switch
 			{
-				case ClassInstanceNode classInstanceNode:
-					return $"class {classInstanceNode.InnerNode.Name}";
-				case EnumNode enumNode:
-					return enumNode.Enum.Name;
-			}
-
-			return null;
+				ClassInstanceNode classInstanceNode => $"class {classInstanceNode.InnerNode.Name}",
+				EnumNode enumNode => enumNode.Enum.Name,
+				_ => null,
+			};
 		}
 
 		/// <summary>

@@ -44,7 +44,7 @@ namespace ReClassNET.DataExchange.ReClass
 			uint.TryParse(document.Root.Attribute(XmlVersionAttribute)?.Value, out var fileVersion);
 			if ((fileVersion & FileVersionCriticalMask) > (FileVersion & FileVersionCriticalMask))
 			{
-				throw new FormatException($"The file version is unsupported. A newer {Constants.ApplicationName} version is required to read it.");
+				throw new FormatException($"The file version is unsupported. A newer {Constants.AppDisplayName} version is required to read it.");
 			}
 
 			var platform = document.Root.Attribute(XmlPlatformAttribute)?.Value;
@@ -245,62 +245,62 @@ namespace ReClassNET.DataExchange.ReClass
 			switch (node)
 			{
 				case VirtualMethodTableNode vtableNode:
-				{
-					var nodes = element
-						.Elements(XmlMethodElement)
-						.Select(e => new VirtualMethodNode
-						{
-							Name = e.Attribute(XmlNameAttribute)?.Value ?? string.Empty,
-							Comment = e.Attribute(XmlCommentAttribute)?.Value ?? string.Empty,
-							IsHidden = (bool?)e.Attribute(XmlHiddenAttribute) ?? false
-						});
-
-					vtableNode.AddNodes(nodes);
-					break;
-				}
-				case UnionNode unionNode:
-				{
-					var nodes = element
-						.Elements()
-						.Select(e => CreateNodeFromElement(e, unionNode, logger));
-
-					unionNode.AddNodes(nodes);
-					break;
-				}
-				case BaseWrapperArrayNode arrayNode:
-				{
-					arrayNode.Count = (int?)element.Attribute(XmlCountAttribute) ?? 0;
-					break;
-				}
-				case BaseTextNode textNode:
-				{
-					textNode.Length = (int?)element.Attribute(XmlLengthAttribute) ?? 0;
-					break;
-				}
-				case BitFieldNode bitFieldNode:
-				{
-					bitFieldNode.Bits = (int?)element.Attribute(XmlBitsAttribute) ?? 0;
-					break;
-				}
-				case FunctionNode functionNode:
-				{
-					functionNode.Signature = element.Attribute(XmlSignatureAttribute)?.Value ?? string.Empty;
-
-					var reference = ParseUuid(element.Attribute(XmlReferenceAttribute)?.Value);
-					if (project.ContainsClass(reference))
 					{
-						functionNode.BelongsToClass = project.GetClassByUuid(reference);
+						var nodes = element
+							.Elements(XmlMethodElement)
+							.Select(e => new VirtualMethodNode
+							{
+								Name = e.Attribute(XmlNameAttribute)?.Value ?? string.Empty,
+								Comment = e.Attribute(XmlCommentAttribute)?.Value ?? string.Empty,
+								IsHidden = (bool?)e.Attribute(XmlHiddenAttribute) ?? false
+							});
+
+						vtableNode.AddNodes(nodes);
+						break;
 					}
-					break;
-				}
+				case UnionNode unionNode:
+					{
+						var nodes = element
+							.Elements()
+							.Select(e => CreateNodeFromElement(e, unionNode, logger));
+
+						unionNode.AddNodes(nodes);
+						break;
+					}
+				case BaseWrapperArrayNode arrayNode:
+					{
+						arrayNode.Count = (int?)element.Attribute(XmlCountAttribute) ?? 0;
+						break;
+					}
+				case BaseTextNode textNode:
+					{
+						textNode.Length = (int?)element.Attribute(XmlLengthAttribute) ?? 0;
+						break;
+					}
+				case BitFieldNode bitFieldNode:
+					{
+						bitFieldNode.Bits = (int?)element.Attribute(XmlBitsAttribute) ?? 0;
+						break;
+					}
+				case FunctionNode functionNode:
+					{
+						functionNode.Signature = element.Attribute(XmlSignatureAttribute)?.Value ?? string.Empty;
+
+						var reference = ParseUuid(element.Attribute(XmlReferenceAttribute)?.Value);
+						if (project.ContainsClass(reference))
+						{
+							functionNode.BelongsToClass = project.GetClassByUuid(reference);
+						}
+						break;
+					}
 				case EnumNode enumNode:
-				{
-					var enumName = element.Attribute(XmlReferenceAttribute)?.Value ?? string.Empty;
-					var @enum = project.Enums.FirstOrDefault(e => e.Name == enumName) ?? EnumDescription.Default;
-					
-					enumNode.ChangeEnum(@enum);
-					break;
-				}
+					{
+						var enumName = element.Attribute(XmlReferenceAttribute)?.Value ?? string.Empty;
+						var @enum = project.Enums.FirstOrDefault(e => e.Name == enumName) ?? EnumDescription.Default;
+
+						enumNode.ChangeEnum(@enum);
+						break;
+					}
 			}
 
 			return node;

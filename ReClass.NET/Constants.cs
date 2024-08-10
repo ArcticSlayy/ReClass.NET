@@ -1,14 +1,18 @@
-﻿namespace ReClassNET
+namespace ReClassNET
 {
 	public class Constants
 	{
-		public const string ApplicationName = "ReClass.NET";
+		public const string AppName = "ReClass.NET";
+		/// <summary>
+		/// Used in places like window titles, text, and etc.
+		/// Core things not shown to the user won't use this.
+		/// </summary>
+		public const string AppDisplayName = "ReClass2";
+		public const string AppExecutableName = $"{AppName}.exe";
 
-		public const string ApplicationExecutableName = ApplicationName + ".exe";
+		public const string AppVersion = "1.3";
 
-		public const string ApplicationVersion = "1.2";
-
-		public const string LauncherExecutableName = ApplicationName + "_Launcher.exe";
+		public const string LauncherExecutableName = $"{AppName}_Launcher.exe";
 
 		public const string Author = "KN4CK3R";
 
@@ -34,10 +38,10 @@
 
 		public static class CommandLineOptions
 		{
-			public const string AttachTo = "attachto";
+			public const string AttachTo = "attach_to";
 
-			public const string FileExtRegister = "registerfileext";
-			public const string FileExtUnregister = "unregisterfileext";
+			public const string FileExtRegister = "register_file_ext";
+			public const string FileExtUnregister = "unregister_file_ext";
 		}
 	}
 }

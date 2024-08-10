@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics.Contracts;
 using ReClassNET.Extensions;
 using ReClassNET.Memory;
@@ -19,15 +19,15 @@ namespace ReClassNET.AddressParser
 				case NegateExpression negateExpression:
 					return Execute(negateExpression.Expression, processReader).Negate();
 				case ModuleExpression moduleExpression:
-				{
-					var module = processReader.GetModuleByName(moduleExpression.Name);
-					if (module != null)
 					{
-						return module.Start;
-					}
+						var module = processReader.GetModuleByName(moduleExpression.Name);
+						if (module != null)
+						{
+							return module.Start;
+						}
 
-					return IntPtr.Zero;
-				}
+						return IntPtr.Zero;
+					}
 				case AddExpression addExpression:
 					return Execute(addExpression.Lhs, processReader).Add(Execute(addExpression.Rhs, processReader));
 				case SubtractExpression subtractExpression:

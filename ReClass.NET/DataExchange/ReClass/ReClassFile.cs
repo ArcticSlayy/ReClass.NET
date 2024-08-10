@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
@@ -247,17 +247,17 @@ namespace ReClassNET.DataExchange.ReClass
 							.ForEach(vtableNode.AddNode);
 						break;
 					case BaseTextNode textNode:
-					{
-						TryGetAttributeValue(element, "Size", out var length, logger);
-						textNode.Length = textNode is Utf16TextNode ? length / 2 : length;
-						break;
-					}
+						{
+							TryGetAttributeValue(element, "Size", out var length, logger);
+							textNode.Length = textNode is Utf16TextNode ? length / 2 : length;
+							break;
+						}
 					case BitFieldNode bitFieldNode:
-					{
-						TryGetAttributeValue(element, "Size", out var bits, logger);
-						bitFieldNode.Bits = bits * 8;
-						break;
-					}
+						{
+							TryGetAttributeValue(element, "Size", out var bits, logger);
+							bitFieldNode.Bits = bits * 8;
+							break;
+						}
 				}
 
 				yield return node;

@@ -1,6 +1,6 @@
-﻿using Microsoft.SqlServer.MessageBox;
 using System;
 using System.Diagnostics.Contracts;
+using Microsoft.SqlServer.MessageBox;
 
 namespace ReClassNET.Logger
 {

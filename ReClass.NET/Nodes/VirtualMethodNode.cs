@@ -11,7 +11,7 @@ namespace ReClassNET.Nodes
 
 		public override void GetUserInterfaceInfo(out string name, out Image icon)
 		{
-			throw new InvalidOperationException($"The '{nameof(VirtualMethodNode)}' node should not be accessible from the ui.");
+			throw new InvalidOperationException($"The '{nameof(VirtualMethodNode)}' node should not be accessible from the UI.");
 		}
 
 		public VirtualMethodNode()
