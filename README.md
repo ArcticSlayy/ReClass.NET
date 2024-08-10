@@ -3,6 +3,12 @@
 This is a port of ReClass to the .NET platform with lots of additional features.
 
 ![Notepad++ open in ReClass.NET (old, Windows 7)](assets/imgs/notepad++-demo.jpg)
+**
+No credit to me for the DarkMode and Edit Text Color option. These are just a combination of two users solutions which I added as this was my preferred options, and using black in the original repo made text when editing the address invisible. 
+
+https://github.com/ReClassNET/ReClass.NET/pull/247 - Text Color by Derrik
+https://github.com/ReClassNET/ReClass.NET/issues/272 - Dark mode by RealPacket
+**
 
 ## Features
 
